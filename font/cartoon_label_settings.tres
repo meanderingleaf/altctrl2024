@@ -1,0 +1,7 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://ni61wdkpy3r0"]
+
+[ext_resource type="FontFile" uid="uid://dljkyces0enod" path="res://font/Sawer.otf" id="1_x0a6b"]
+
+[resource]
+font = ExtResource("1_x0a6b")
+font_size = 30

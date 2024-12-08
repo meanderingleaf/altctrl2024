@@ -1,0 +1,587 @@
+[gd_scene load_steps=37 format=3 uid="uid://lbwcghwvwaxe"]
+
+[ext_resource type="Script" path="res://scripts/main_game.gd" id="1_1mkpx"]
+[ext_resource type="Script" path="res://scripts/cart.gd" id="2_6a1xf"]
+[ext_resource type="Environment" uid="uid://5lbkfght7wh5" path="res://base_environment.tres" id="3_yopuy"]
+[ext_resource type="PackedScene" uid="uid://db233dlqgvr23" path="res://models/Shopping cart.glb" id="4_t7gbs"]
+[ext_resource type="Texture2D" uid="uid://6smvjbh1h5jl" path="res://sprites/breadarm.png" id="5_cdawi"]
+[ext_resource type="AudioStream" uid="uid://dai3472k1lbti" path="res://sound/bear.mp3" id="6_o2epc"]
+[ext_resource type="Script" path="res://scripts/mockup_control.gd" id="7_tnx7n"]
+[ext_resource type="Script" path="res://scripts/clothing_rack.gd" id="8_ib71e"]
+[ext_resource type="PackedScene" uid="uid://cjk1p7lokp2qp" path="res://models/store.blend" id="9_vhl8n"]
+[ext_resource type="Texture2D" uid="uid://6qavvqo82vmh" path="res://sprites/progress_holder.png" id="10_jn1lp"]
+[ext_resource type="Script" path="res://scripts/round_complete_anim.gd" id="11_ltmsq"]
+[ext_resource type="Texture2D" uid="uid://cunu70nuvkkj5" path="res://sprites/progress_bar.png" id="11_mmrq6"]
+[ext_resource type="Script" path="res://scripts/game_start_ui.gd" id="12_dii2i"]
+[ext_resource type="LabelSettings" uid="uid://ni61wdkpy3r0" path="res://font/cartoon_label_settings.tres" id="12_ucwnl"]
+[ext_resource type="PackedScene" uid="uid://bjnveju72lt8w" path="res://gameobjects/table.tscn" id="15_fco6u"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qq2e3"]
+radius = 0.74652
+height = 4.1125
+
+[sub_resource type="BoxMesh" id="BoxMesh_28ca1"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bd1d8"]
+size = Vector3(9.57077, 4.93471, 3.71338)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ikach"]
+size = Vector3(6.39612, 5.41191, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1b6pk"]
+size = Vector3(4.41438, 0.814697, 3.81456)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gtk7n"]
+size = Vector3(4.12508, 1.99814, 0.267822)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_33p1h"]
+size = Vector3(0.411423, 1.7362, 4.69467)
+
+[sub_resource type="Animation" id="Animation_64t8s"]
+resource_name = "walkin"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HandHolder:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.833333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.907745, 0.594257, 0), Vector3(0.908, 0.9, 0), Vector3(0.908, 0.594, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_sj27o"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HandHolder:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.907745, 0.594257, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nvs2d"]
+_data = {
+"RESET": SubResource("Animation_sj27o"),
+"walkin": SubResource("Animation_64t8s")
+}
+
+[sub_resource type="Curve3D" id="Curve3D_imlum"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 7.06907, -60.5912, 140.026, 0, 0, 0, 0, 0, 0, 46.731, -59.4036, 117.777, 0, 0, 0, 0, 0, 0, 88.5889, -37.3883, 45.1283, 0, 0, 0, 0, 0, 0, 135.97, -14.9229, -31.2933, 0, 0, 0, 0, 0, 0, 98.6747, 10.2109, -72.3324, 0, 0, 0, 0, 0, 0, 20.9658, 42.5224, -110.787, 0, 0, 0, 0, 0, 0, 74.7283, 0.580811, -38.2308, 0, 0, 0, 0, 0, 0, -13.7409, 27.6625, -59.2446, 0, 0, 0, 0, 0, 0, 53.7594, -7.04616, -10.2595, 0, 0, 0, 0, 0, 0, 34.0986, -33.4337, 61.0959, 0, 0, 0, 0, 0, 0, -20.8902, -30.4431, 80.5087, 0, 0, 0, 0, 0, 0, -24.5534, -49.871, 6.81659),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 12
+
+[sub_resource type="Curve3D" id="Curve3D_kxpk3"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 1.32563, -0.00129962, 1.63453, 0, 0, 0, 0, 0, 0, 11.8532, -0.00268817, 3.37594, 0, 0, 0, 0, 0, 0, 38.1326, -0.0164287, 20.6317, 0, 0, 0, 0, 0, 0, 20.4811, -0.0309246, 38.8373, 0, 0, 0, 0, 0, 0, -36.1146, -0.0282695, 35.5128, 0, 0, 0, 0, 0, 0, -67.4919, -0.00394702, 4.96582, 0, 0, 0, 0, 0, 0, -65.8817, 0.0228169, -28.648, 0, 0, 0, 0, 0, 0, -62.8625, 0.0510304, -64.0733, 0, 0, 0, 0, 0, 0, -48.7729, 0.053426, -67.0925, 0, 0, 0, 0, 0, 0, -52.2667, 0.14536, -182.53, 0, 0, 0, 0, 0, 0, -142.716, 0.162175, -203.594, 0, 0, 0, 0, 0, 0, -186.495, 0.0171864, -21.4563, 0, 0, 0, 0, 0, 0, -184.017, -0.104151, 130.944, 0, 0, 0, 0, 0, 0, -39.4634, -0.121577, 152.834, 0, 0, 0, 0, 0, 0, 21.9027, -0.119489, 150.217, 0, 0, 0, 0, 0, 0, 154.238, -0.114985, 144.573),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 16
+
+[sub_resource type="Curve3D" id="Curve3D_ed6s8"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -19.4171, 0, 0, 0, 0, 0, 0, 0, 0, -0.842478, 0, 0, 0, 0, 0, 0, 0, 0, 9.63577, 0, 0),
+"tilts": PackedFloat32Array(0, 0, 0)
+}
+point_count = 3
+
+[sub_resource type="Curve3D" id="Curve3D_xpo0x"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -2.04454, 0, 0, 0, 0, 0, 3.16002, -0.586727, 1.03831, 6.59911, -0.0431175, 6.61781, 0, 0, 0, 0, 0, 0, 20.4474, 0, -1.64063),
+"tilts": PackedFloat32Array(0, 0, 0)
+}
+point_count = 3
+
+[sub_resource type="Animation" id="Animation_yglcs"]
+resource_name = "intro_away"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.266667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.0117647), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect/RichTextLabel:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.266667, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ColorRect/RichTextLabel:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.266667, 0.533333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(28, -34), Vector2(28, 12)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ColorRect:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.7, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(466, 215), Vector2(982, 334)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("ColorRect:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.7, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.439706]
+}
+
+[sub_resource type="Animation" id="Animation_4ri0x"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect/RichTextLabel:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ColorRect/RichTextLabel:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(28, 17)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ColorRect:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(466, 215)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("ColorRect:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jwf6d"]
+_data = {
+"RESET": SubResource("Animation_4ri0x"),
+"intro_away": SubResource("Animation_yglcs")
+}
+
+[sub_resource type="Animation" id="Animation_p2j06"]
+resource_name = "loadout"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_tygui"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_v8i24"]
+_data = {
+"RESET": SubResource("Animation_tygui"),
+"loadout": SubResource("Animation_p2j06")
+}
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yivw0"]
+size = Vector3(700, 90, 20)
+
+[node name="FastFashion" type="Node3D"]
+script = ExtResource("1_1mkpx")
+
+[node name="Cart" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.7811, 0, 0)
+axis_lock_linear_y = true
+motion_mode = 1
+script = ExtResource("2_6a1xf")
+speed = 20.0
+
+[node name="Shorpe" type="CollisionShape3D" parent="Cart"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.81161, -1.23158, -0.0435195)
+shape = SubResource("CapsuleShape3D_qq2e3")
+
+[node name="ThrowPosition" type="Node3D" parent="Cart"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.22432, 1.09068, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Cart"]
+transform = Transform3D(-4.37114e-08, 0.185667, -0.982613, 0, 0.982613, 0.185667, 1, 8.11575e-09, -4.29514e-08, -2.61442, 2.06957, 0.251083)
+environment = ExtResource("3_yopuy")
+fov = 72.0
+
+[node name="ModelHolder" type="Node3D" parent="Cart"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Cart/ModelHolder"]
+transform = Transform3D(1.49637, 0, 0, 0, 0.630403, 0, 0, 0, 1, 0.30477, 0, 0)
+visible = false
+mesh = SubResource("BoxMesh_28ca1")
+skeleton = NodePath("../..")
+
+[node name="Shopping cart" parent="Cart/ModelHolder" instance=ExtResource("4_t7gbs")]
+transform = Transform3D(-3.04539e-07, 0, -1.20353e-05, 0, 8.09244e-06, 0, 1.94509e-05, 0, -1.88435e-07, -3.41296, -1.9952, 17.5346)
+
+[node name="HandHolder" type="Node3D" parent="Cart"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.907745, 0.594257, 0)
+
+[node name="R Hand" type="Sprite3D" parent="Cart/HandHolder"]
+transform = Transform3D(-8.74228e-09, 0.1, -0.173205, 0, 0.173205, 0.1, 0.2, 4.37114e-09, -7.57103e-09, -2.22186, 0, 1.19501)
+texture = ExtResource("5_cdawi")
+
+[node name="Right_Paw_Area" type="Area3D" parent="Cart/HandHolder/R Hand"]
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cart/HandHolder/R Hand/Right_Paw_Area"]
+transform = Transform3D(0.99997, -1.7355e-12, 1.74438e-12, -3.58824e-13, 1, -1.49012e-07, -7.74492e-13, 1.49012e-07, 1, 2.5714, 2.87908, 0.1912)
+shape = SubResource("BoxShape3D_bd1d8")
+
+[node name="L Hand" type="Sprite3D" parent="Cart/HandHolder"]
+transform = Transform3D(-8.74228e-09, 0.1, 0.173205, 0, 0.173205, -0.1, -0.2, -4.37114e-09, -7.57103e-09, -2.36568, 0.240258, -0.994046)
+texture = ExtResource("5_cdawi")
+
+[node name="Left_Paw_Area" type="Area3D" parent="Cart/HandHolder/L Hand"]
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cart/HandHolder/L Hand/Left_Paw_Area"]
+transform = Transform3D(0.999977, -1.3447e-12, -1.35358e-12, -2.62901e-13, 1, 1.49012e-07, 6.50147e-13, -1.49012e-07, 1, 1.35551, 2.20596, 0)
+shape = SubResource("BoxShape3D_ikach")
+
+[node name="SFX" type="Node3D" parent="Cart"]
+
+[node name="BearSFX" type="AudioStreamPlayer" parent="Cart/SFX"]
+stream = ExtResource("6_o2epc")
+
+[node name="CartBox" type="StaticBody3D" parent="Cart"]
+
+[node name="BottomShape" type="CollisionShape3D" parent="Cart/CartBox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.70719, -1.67607, 0.0150986)
+shape = SubResource("BoxShape3D_1b6pk")
+
+[node name="SideShape" type="CollisionShape3D" parent="Cart/CartBox"]
+transform = Transform3D(1, 0, 0, 0, 0.963933, -0.266145, 0, 0.266145, 0.963933, 1.93873, -0.266895, 2.20944)
+shape = SubResource("BoxShape3D_gtk7n")
+
+[node name="SideShape2" type="CollisionShape3D" parent="Cart/CartBox"]
+transform = Transform3D(1, 0, 0, 0, 0.928486, 0.371368, 0, -0.371368, 0.928486, 1.91677, -0.0533469, -2.29792)
+shape = SubResource("BoxShape3D_gtk7n")
+
+[node name="FrontShape" type="CollisionShape3D" parent="Cart/CartBox"]
+transform = Transform3D(0.957476, 0.288514, 0, -0.288514, 0.957476, 0, 0, 0, 1, 4.02026, -0.951623, -0.165024)
+shape = SubResource("BoxShape3D_33p1h")
+
+[node name="FrontShape2" type="CollisionShape3D" parent="Cart/CartBox"]
+transform = Transform3D(0.928077, -0.372389, 0, 0.372389, 0.928077, 0, 0, 0, 1, 0.246662, -0.159818, 0.27594)
+shape = SubResource("BoxShape3D_33p1h")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Cart"]
+libraries = {
+"": SubResource("AnimationLibrary_nvs2d")
+}
+autoplay = "walkin"
+
+[node name="MockupControl" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 609.0
+offset_bottom = 459.0
+script = ExtResource("7_tnx7n")
+
+[node name="L_Slider" type="VSlider" parent="MockupControl"]
+layout_mode = 0
+offset_left = 60.0
+offset_top = 74.0
+offset_right = 76.0
+offset_bottom = 364.0
+
+[node name="R_Slider" type="VSlider" parent="MockupControl"]
+layout_mode = 0
+offset_left = 890.0
+offset_top = 110.0
+offset_right = 906.0
+offset_bottom = 400.0
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.827901, -0.354764, 0.434423, 0.187684, 0.905125, 0.381476, -0.528541, -0.23429, 0.815937, 0, 114.107, 0)
+
+[node name="Long_clothes_2" type="Path3D" parent="." groups=["clothing_rack"]]
+transform = Transform3D(0.827901, -0.354764, 0.434423, 0.187684, 0.905125, 0.381476, -0.528541, -0.23429, 0.815937, 0, 1.723, 0)
+curve = SubResource("Curve3D_imlum")
+script = ExtResource("8_ib71e")
+clothing_count = 90.0
+
+[node name="Long_clothes" type="Path3D" parent="." groups=["clothing_rack"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.007, 1.723, 29.062)
+curve = SubResource("Curve3D_kxpk3")
+script = ExtResource("8_ib71e")
+clothing_count = 90.0
+
+[node name="Straight_Clothes_holder" type="Path3D" parent="." groups=["clothing_rack"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000827789, 1.72253, -1.1481)
+curve = SubResource("Curve3D_ed6s8")
+script = ExtResource("8_ib71e")
+
+[node name="Curve_Clothes_holder" type="Path3D" parent="." groups=["clothing_rack"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.00717, 1.6072, 4.02598)
+curve = SubResource("Curve3D_xpo0x")
+script = ExtResource("8_ib71e")
+
+[node name="store" parent="." instance=ExtResource("9_vhl8n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.008, 21.612, 3.999)
+
+[node name="GameUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="prgFashion" type="TextureProgressBar" parent="GameUI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 8.811
+anchor_top = 12.113
+anchor_right = 20.216
+anchor_bottom = 14.572
+offset_left = 69.56
+offset_top = -403.52
+offset_right = 55.36
+offset_bottom = -417.88
+value = 2.0
+rounded = true
+nine_patch_stretch = true
+texture_over = ExtResource("10_jn1lp")
+texture_progress = ExtResource("11_mmrq6")
+
+[node name="txtFashions" type="Label" parent="GameUI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 9.093
+anchor_top = 11.759
+anchor_right = 9.093
+anchor_bottom = 11.759
+offset_left = 69.28
+offset_top = -431.36
+offset_right = 214.28
+offset_bottom = -408.36
+text = "Fashions Gathered"
+label_settings = ExtResource("12_ucwnl")
+
+[node name="GameStartUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("12_dii2i")
+
+[node name="ColorRect" type="ColorRect" parent="GameStartUI"]
+layout_mode = 0
+offset_left = 466.0
+offset_top = 215.0
+offset_right = 756.0
+offset_bottom = 563.0
+color = Color(0, 0, 0, 1)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="GameStartUI/ColorRect"]
+layout_mode = 0
+offset_left = 28.0
+offset_top = 17.0
+offset_right = 259.0
+offset_bottom = 292.0
+theme_override_font_sizes/normal_font_size = 30
+text = "Hey hon"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="GameStartUI"]
+libraries = {
+"": SubResource("AnimationLibrary_jwf6d")
+}
+autoplay = "intro_away"
+
+[node name="RoundCompleteAnim" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("11_ltmsq")
+
+[node name="ColorRect" type="ColorRect" parent="RoundCompleteAnim"]
+layout_mode = 0
+offset_right = 1171.0
+offset_bottom = 671.0
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="RoundCompleteAnim"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="RoundCompleteAnim"]
+libraries = {
+"": SubResource("AnimationLibrary_v8i24")
+}
+
+[node name="BGM" type="AudioStreamPlayer" parent="."]
+
+[node name="Collision" type="Node3D" parent="."]
+
+[node name="Wall" type="StaticBody3D" parent="Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -201.412)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Collision/Wall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 16.9411)
+shape = SubResource("BoxShape3D_yivw0")
+
+[node name="Wall2" type="StaticBody3D" parent="Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 184.185)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Collision/Wall2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 16.9411)
+shape = SubResource("BoxShape3D_yivw0")
+
+[node name="Wall3" type="StaticBody3D" parent="Collision"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -224.996, 0, -11.555)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Collision/Wall3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 16.9411)
+shape = SubResource("BoxShape3D_yivw0")
+
+[node name="Wall4" type="StaticBody3D" parent="Collision"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 203.056, 0, -11.555)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Collision/Wall4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 16.9411)
+shape = SubResource("BoxShape3D_yivw0")
+
+[node name="Obstacles" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.6003, -4.05761, 8.4013)
+
+[node name="Table" parent="Obstacles" instance=ExtResource("15_fco6u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 32.493)
+
+[node name="Table2" parent="Obstacles" instance=ExtResource("15_fco6u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -25.1879)
+
+[node name="Table5" parent="Obstacles" instance=ExtResource("15_fco6u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 85.3707, 0, 114.124)
+
+[node name="Table6" parent="Obstacles" instance=ExtResource("15_fco6u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 85.3707, 0, -26.5766)
+
+[node name="Table7" parent="Obstacles" instance=ExtResource("15_fco6u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 85.3707, 0, -53.6894)
+
+[node name="Table8" parent="Obstacles" instance=ExtResource("15_fco6u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 85.3707, 0, -126.315)
+
+[node name="Table9" parent="Obstacles" instance=ExtResource("15_fco6u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -70.1986, -0.0325603, 83.9379)
+
+[node name="Table10" parent="Obstacles" instance=ExtResource("15_fco6u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -70.1986, -0.0325603, 58.75)
+
+[node name="Table11" parent="Obstacles" instance=ExtResource("15_fco6u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -70.1986, -0.0325603, 31.6371)
+
+[node name="Table12" parent="Obstacles" instance=ExtResource("15_fco6u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -70.1986, -0.0325603, -30.1513)
+
+[node name="Table3" parent="Obstacles" instance=ExtResource("15_fco6u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -52.3008)
+
+[node name="Table4" parent="Obstacles" instance=ExtResource("15_fco6u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -85.6986)
+
+[connection signal="body_entered" from="Cart/HandHolder/R Hand/Right_Paw_Area" to="Cart" method="_on_right_paw_area_body_entered"]
+[connection signal="body_entered" from="Cart/HandHolder/L Hand/Left_Paw_Area" to="Cart" method="_on_left_paw_area_body_entered"]
+[connection signal="drag_ended" from="MockupControl/L_Slider" to="MockupControl" method="_on_l_slider_drag_ended"]
+[connection signal="value_changed" from="MockupControl/L_Slider" to="MockupControl" method="_on_l_slider_value_changed"]
+[connection signal="drag_ended" from="MockupControl/R_Slider" to="MockupControl" method="_on_r_slider_drag_ended"]
+[connection signal="value_changed" from="MockupControl/R_Slider" to="MockupControl" method="_on_r_slider_value_changed"]
+[connection signal="animation_finished" from="RoundCompleteAnim/AnimationPlayer" to="RoundCompleteAnim" method="_on_animation_player_animation_finished"]
