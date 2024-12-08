@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://db233dlqgvr23" path="res://models/Shopping cart.glb" id="4_t7gbs"]
 [ext_resource type="Texture2D" uid="uid://6smvjbh1h5jl" path="res://sprites/breadarm.png" id="5_cdawi"]
 [ext_resource type="AudioStream" uid="uid://dai3472k1lbti" path="res://sound/bear.mp3" id="6_o2epc"]
+[ext_resource type="Script" path="res://scripts/cart_box.gd" id="7_ib70x"]
 [ext_resource type="Script" path="res://scripts/mockup_control.gd" id="7_tnx7n"]
 [ext_resource type="Script" path="res://scripts/clothing_rack.gd" id="8_ib71e"]
 [ext_resource type="PackedScene" uid="uid://b4wsuj2xicob" path="res://models/store.glb" id="10_hgxeg"]
@@ -28,11 +29,6 @@ size = Vector3(14.0218, 4.93471, 3.71338)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ikach"]
 size = Vector3(14.1684, 5.41191, 1)
-
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_hpigk"]
-friction = 10.05
-rough = true
-absorbent = true
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1b6pk"]
 size = Vector3(4.41438, 0.814697, 3.81456)
@@ -285,7 +281,7 @@ size = Vector3(700, 90, 20)
 script = ExtResource("1_1mkpx")
 
 [node name="Cart" type="CharacterBody3D" parent="."]
-transform = Transform3D(0.847409, 0, -0.53094, 0, 1, 0, 0.53094, 0, 0.847409, -124.243, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.7811, 0, 0)
 axis_lock_linear_y = true
 motion_mode = 1
 script = ExtResource("2_6a1xf")
@@ -344,9 +340,9 @@ shape = SubResource("BoxShape3D_ikach")
 [node name="BearSFX" type="AudioStreamPlayer" parent="Cart/SFX"]
 stream = ExtResource("6_o2epc")
 
-[node name="CartBox" type="StaticBody3D" parent="Cart"]
+[node name="CartBox" type="Area3D" parent="Cart"]
 collision_mask = 3
-physics_material_override = SubResource("PhysicsMaterial_hpigk")
+script = ExtResource("7_ib70x")
 
 [node name="BottomShape" type="CollisionShape3D" parent="Cart/CartBox"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.70719, -1.67607, 0.0150986)
@@ -423,6 +419,7 @@ script = ExtResource("8_ib71e")
 
 [node name="store_glb" parent="." instance=ExtResource("10_hgxeg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.008, 21.612, 3.999)
+visible = false
 
 [node name="GameUI" type="Control" parent="."]
 layout_mode = 3
@@ -591,6 +588,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -85.6986)
 
 [connection signal="body_entered" from="Cart/HandHolder/R Hand/Right_Paw_Area" to="Cart" method="_on_right_paw_area_body_entered"]
 [connection signal="body_entered" from="Cart/HandHolder/L Hand/Left_Paw_Area" to="Cart" method="_on_left_paw_area_body_entered"]
+[connection signal="body_entered" from="Cart/CartBox" to="Cart/CartBox" method="_on_body_entered"]
 [connection signal="drag_ended" from="MockupControl/L_Slider" to="MockupControl" method="_on_l_slider_drag_ended"]
 [connection signal="value_changed" from="MockupControl/L_Slider" to="MockupControl" method="_on_l_slider_value_changed"]
 [connection signal="drag_ended" from="MockupControl/R_Slider" to="MockupControl" method="_on_r_slider_drag_ended"]

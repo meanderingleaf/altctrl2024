@@ -396,10 +396,10 @@ script = ExtResource("6_31ksq")
 
 [node name="txtResults" type="Label" parent="ResultsScreen"]
 layout_mode = 0
-offset_left = 235.0
-offset_top = 142.0
-offset_right = 353.0
-offset_bottom = 175.0
+offset_left = 237.0
+offset_top = 154.0
+offset_right = 355.0
+offset_bottom = 187.0
 theme_override_colors/font_color = Color(0.678328, 0.255906, 0.217448, 1)
 text = "Results!"
 label_settings = ExtResource("6_mjafa")
@@ -411,19 +411,19 @@ libraries = {
 
 [node name="txtSexy" type="Label" parent="ResultsScreen"]
 layout_mode = 0
-offset_left = 278.0
+offset_left = 280.0
 offset_top = 251.0
-offset_right = 343.0
+offset_right = 345.0
 offset_bottom = 284.0
 text = "Sexy"
 label_settings = ExtResource("6_mjafa")
 
 [node name="txtCasual" type="Label" parent="ResultsScreen"]
 layout_mode = 0
-offset_left = 272.0
-offset_top = 339.0
-offset_right = 378.0
-offset_bottom = 372.0
+offset_left = 274.0
+offset_top = 365.0
+offset_right = 380.0
+offset_bottom = 398.0
 text = "Casual"
 label_settings = ExtResource("6_mjafa")
 

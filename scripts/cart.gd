@@ -73,8 +73,8 @@ func paw_hit(body):
 	if(body.is_in_group("clothes")):
 		#visibly collect
 		var throwDir = $ThrowPosition.global_position - body.global_position
-		body.gravity_scale = 1
-		body.apply_force(throwDir.normalized() * 2000)
+		body.gravity_scale = .3
+		body.apply_force(throwDir.normalized() * 1300)
 		
 		#audio!
 		$SFX/BearSFX.play(0)
