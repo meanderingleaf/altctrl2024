@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://lbwcghwvwaxe"]
+[gd_scene load_steps=38 format=3 uid="uid://lbwcghwvwaxe"]
 
 [ext_resource type="Script" path="res://scripts/main_game.gd" id="1_1mkpx"]
 [ext_resource type="Script" path="res://scripts/cart.gd" id="2_6a1xf"]
@@ -15,6 +15,7 @@
 [ext_resource type="Script" path="res://scripts/game_start_ui.gd" id="12_dii2i"]
 [ext_resource type="LabelSettings" uid="uid://ni61wdkpy3r0" path="res://font/cartoon_label_settings.tres" id="12_ucwnl"]
 [ext_resource type="PackedScene" uid="uid://bjnveju72lt8w" path="res://gameobjects/table.tscn" id="15_fco6u"]
+[ext_resource type="AudioStream" uid="uid://civj8dg7bjnuy" path="res://sound/bearmusic.ogg" id="15_unhqc"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qq2e3"]
 radius = 0.74652
@@ -508,6 +509,9 @@ libraries = {
 }
 
 [node name="BGM" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_unhqc")
+volume_db = -6.558
+autoplay = true
 
 [node name="Collision" type="Node3D" parent="."]
 

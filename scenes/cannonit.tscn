@@ -1,7 +1,6 @@
-[gd_scene load_steps=19 format=3 uid="uid://dby01h7sl2s4"]
+[gd_scene load_steps=20 format=3 uid="uid://dby01h7sl2s4"]
 
 [ext_resource type="Script" path="res://scripts/cannonit.gd" id="1_0q2hu"]
-[ext_resource type="PackedScene" uid="uid://cjk1p7lokp2qp" path="res://models/store.blend" id="1_td4n8"]
 [ext_resource type="Script" path="res://scripts/fashion_target.gd" id="2_dmnat"]
 [ext_resource type="Script" path="res://scripts/cannon.gd" id="3_j811y"]
 [ext_resource type="Texture2D" uid="uid://cqwyo6q3wa76i" path="res://sprites/chunk.webp" id="4_y0pqm"]
@@ -11,6 +10,15 @@
 [ext_resource type="Texture2D" uid="uid://cunu70nuvkkj5" path="res://sprites/progress_bar.png" id="9_r0uf7"]
 [ext_resource type="AudioStream" uid="uid://dqe8sflikwmgy" path="res://sound/splat.mp3" id="10_13cg1"]
 [ext_resource type="AudioStream" uid="uid://38a11ky0qb0i" path="res://sound/shotgun.mp3" id="10_urxte"]
+[ext_resource type="PackedScene" uid="uid://b11s3yatxno1" path="res://models/stage.glb" id="12_ovvmx"]
+
+[sub_resource type="Environment" id="Environment_cesqx"]
+background_mode = 1
+background_color = Color(0.909804, 0.345098, 0.803922, 1)
+fog_enabled = true
+fog_light_color = Color(0.872088, 0.315598, 0.565712, 1)
+volumetric_fog_emission = Color(0.643137, 0.458824, 0.556863, 1)
+volumetric_fog_detail_spread = 0.757858
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pu6xc"]
 
@@ -328,10 +336,8 @@ _data = {
 script = ExtResource("1_0q2hu")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.64454, 2.41169)
-
-[node name="store" parent="." instance=ExtResource("1_td4n8")]
-visible = false
+transform = Transform3D(0.818478, 0.240682, 0.521695, -0.282215, 0.959351, 0.000169551, -0.500448, -0.147369, 0.853132, 1.333, -12.4086, -11.7619)
+environment = SubResource("Environment_cesqx")
 
 [node name="FashionTarget" type="Area3D" parent="."]
 transform = Transform3D(9.68169, 0, 0, 0, 9.68169, 0, 0, 0, 9.68169, 0, 0, -11.4782)
@@ -339,29 +345,30 @@ collision_mask = 3
 script = ExtResource("2_dmnat")
 
 [node name="Body" type="CollisionShape3D" parent="FashionTarget"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.364755, -1.34388, -3.03594)
 shape = SubResource("CapsuleShape3D_pu6xc")
 
 [node name="Arm" type="CollisionShape3D" parent="FashionTarget"]
-transform = Transform3D(0.701482, 0.712687, 0, -0.712687, 0.701482, 0, 0, 0, 1, -0.82819, 0.155897, 0)
+transform = Transform3D(0.701482, 0.712687, 0, -0.712687, 0.701482, 0, 0, 0, 1, -1.19294, -1.18798, -3.03594)
 shape = SubResource("CapsuleShape3D_20ufk")
 
 [node name="Arm2" type="CollisionShape3D" parent="FashionTarget"]
-transform = Transform3D(0.730734, -0.682662, 0, 0.682662, 0.730734, 0, 0, 0, 1, 1.00873, 0.14782, 0)
+transform = Transform3D(0.730734, -0.682662, 0, 0.682662, 0.730734, 0, 0, 0, 1, 0.643975, -1.19606, -3.03594)
 shape = SubResource("CapsuleShape3D_b53mg")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="FashionTarget"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.65737, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.364755, 0.31349, -3.03594)
 shape = SubResource("SphereShape3D_g4423")
 
 [node name="Sprite3D" type="Sprite3D" parent="FashionTarget"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.98237)
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.005, -0.467608, -1.41066, -3.18871)
 texture = ExtResource("4_y0pqm")
 
 [node name="SplatSFX" type="AudioStreamPlayer" parent="FashionTarget"]
 stream = ExtResource("10_13cg1")
 
 [node name="Cannon" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.130775, 1.4389)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -8.57757, -10.4321)
 script = ExtResource("3_j811y")
 
 [node name="Timer" type="Timer" parent="Cannon"]
@@ -370,6 +377,7 @@ autostart = true
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.803369, 0, -0.595482, 0.265442, 0.895152, 0.35811, 0.533047, -0.44576, 0.719137, 0, 6.54859, 0)
+light_color = Color(0.368627, 0.72549, 1, 1)
 
 [node name="JudgementTimer" type="Timer" parent="."]
 wait_time = 3.0
@@ -386,10 +394,10 @@ script = ExtResource("6_31ksq")
 
 [node name="txtResults" type="Label" parent="ResultsScreen"]
 layout_mode = 0
-offset_left = 237.0
-offset_top = 154.0
-offset_right = 355.0
-offset_bottom = 187.0
+offset_left = 235.0
+offset_top = 142.0
+offset_right = 353.0
+offset_bottom = 175.0
 theme_override_colors/font_color = Color(0.678328, 0.255906, 0.217448, 1)
 text = "Results!"
 label_settings = ExtResource("6_mjafa")
@@ -401,19 +409,19 @@ libraries = {
 
 [node name="txtSexy" type="Label" parent="ResultsScreen"]
 layout_mode = 0
-offset_left = 280.0
+offset_left = 278.0
 offset_top = 251.0
-offset_right = 345.0
+offset_right = 343.0
 offset_bottom = 284.0
 text = "Sexy"
 label_settings = ExtResource("6_mjafa")
 
 [node name="txtCasual" type="Label" parent="ResultsScreen"]
 layout_mode = 0
-offset_left = 274.0
-offset_top = 365.0
-offset_right = 380.0
-offset_bottom = 398.0
+offset_left = 272.0
+offset_top = 339.0
+offset_right = 378.0
+offset_bottom = 372.0
 text = "Casual"
 label_settings = ExtResource("6_mjafa")
 
@@ -457,10 +465,22 @@ scale = Vector2(0.24, 0.24)
 texture_over = ExtResource("8_l4kfp")
 texture_progress = ExtResource("9_r0uf7")
 
+[node name="txtPlayAgain" type="Label" parent="ResultsScreen"]
+layout_mode = 0
+offset_left = 274.0
+offset_top = 561.0
+offset_right = 653.0
+offset_bottom = 594.0
+text = "Press start to play again"
+label_settings = ExtResource("6_mjafa")
+
 [node name="ShotgunSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("10_urxte")
 volume_db = -16.0
 autoplay = true
+
+[node name="stage" parent="." instance=ExtResource("12_ovvmx")]
+transform = Transform3D(-1.53685, 0, -10.4113, 0, 10.5241, 0, 10.4113, 0, -1.53685, 0, -27.5317, -79.0914)
 
 [connection signal="body_entered" from="FashionTarget" to="FashionTarget" method="_on_body_entered"]
 [connection signal="timeout" from="Cannon/Timer" to="Cannon" method="_on_timer_timeout"]
