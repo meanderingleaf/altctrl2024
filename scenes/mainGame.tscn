@@ -16,6 +16,7 @@
 [ext_resource type="LabelSettings" uid="uid://ni61wdkpy3r0" path="res://font/cartoon_label_settings.tres" id="12_ucwnl"]
 [ext_resource type="PackedScene" uid="uid://bjnveju72lt8w" path="res://gameobjects/table.tscn" id="15_fco6u"]
 
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qq2e3"]
 radius = 0.74652
 height = 4.1125
