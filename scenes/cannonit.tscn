@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/cannonit.gd" id="1_0q2hu"]
 [ext_resource type="Script" path="res://scripts/fashion_target.gd" id="2_dmnat"]
 [ext_resource type="Script" path="res://scripts/cannon.gd" id="3_j811y"]
-[ext_resource type="Texture2D" uid="uid://cqwyo6q3wa76i" path="res://sprites/chunk.webp" id="4_y0pqm"]
+[ext_resource type="Texture2D" uid="uid://ckhhrln1f5tum" path="res://sprites/fashionBear.png" id="3_semg8"]
 [ext_resource type="Script" path="res://scripts/results_screen.gd" id="6_31ksq"]
 [ext_resource type="LabelSettings" uid="uid://ni61wdkpy3r0" path="res://font/cartoon_label_settings.tres" id="6_mjafa"]
 [ext_resource type="Texture2D" uid="uid://6qavvqo82vmh" path="res://sprites/progress_holder.png" id="8_l4kfp"]
@@ -21,6 +21,8 @@ volumetric_fog_emission = Color(0.643137, 0.458824, 0.556863, 1)
 volumetric_fog_detail_spread = 0.757858
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pu6xc"]
+radius = 0.683832
+height = 2.58885
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_20ufk"]
 radius = 0.147457
@@ -361,8 +363,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.364755, 0.31349, -3.03594)
 shape = SubResource("SphereShape3D_g4423")
 
 [node name="Sprite3D" type="Sprite3D" parent="FashionTarget"]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.005, -0.467608, -1.41066, -3.18871)
-texture = ExtResource("4_y0pqm")
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.005, -0.467608, -1.17677, -3.4072)
+texture = ExtResource("3_semg8")
 
 [node name="SplatSFX" type="AudioStreamPlayer" parent="FashionTarget"]
 stream = ExtResource("10_13cg1")
