@@ -1,7 +1,7 @@
 [gd_scene load_steps=19 format=3 uid="uid://dby01h7sl2s4"]
 
 [ext_resource type="Script" path="res://scripts/cannonit.gd" id="1_0q2hu"]
-[ext_resource type="PackedScene" uid="uid://cjk1p7lokp2qp" path="res://models/store_a.blend" id="1_td4n8"]
+[ext_resource type="PackedScene" uid="uid://cjk1p7lokp2qp" path="res://models/store.blend" id="1_td4n8"]
 [ext_resource type="Script" path="res://scripts/fashion_target.gd" id="2_dmnat"]
 [ext_resource type="Script" path="res://scripts/cannon.gd" id="3_j811y"]
 [ext_resource type="Texture2D" uid="uid://cqwyo6q3wa76i" path="res://sprites/chunk.webp" id="4_y0pqm"]

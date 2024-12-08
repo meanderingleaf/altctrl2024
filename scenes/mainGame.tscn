@@ -8,7 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://dai3472k1lbti" path="res://sound/bear.mp3" id="6_o2epc"]
 [ext_resource type="Script" path="res://scripts/mockup_control.gd" id="7_tnx7n"]
 [ext_resource type="Script" path="res://scripts/clothing_rack.gd" id="8_ib71e"]
-[ext_resource type="PackedScene" uid="uid://cjk1p7lokp2qp" path="res://models/store_a.blend" id="9_vhl8n"]
+[ext_resource type="PackedScene" uid="uid://b4wsuj2xicob" path="res://models/store.glb" id="10_hgxeg"]
 [ext_resource type="Texture2D" uid="uid://6qavvqo82vmh" path="res://sprites/progress_holder.png" id="10_jn1lp"]
 [ext_resource type="Script" path="res://scripts/round_complete_anim.gd" id="11_ltmsq"]
 [ext_resource type="Texture2D" uid="uid://cunu70nuvkkj5" path="res://sprites/progress_bar.png" id="11_mmrq6"]
@@ -414,7 +414,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.00717, 1.6072, 4.02598)
 curve = SubResource("Curve3D_xpo0x")
 script = ExtResource("8_ib71e")
 
-[node name="store" parent="." instance=ExtResource("9_vhl8n")]
+[node name="store_glb" parent="." instance=ExtResource("10_hgxeg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.008, 21.612, 3.999)
 
 [node name="GameUI" type="Control" parent="."]
