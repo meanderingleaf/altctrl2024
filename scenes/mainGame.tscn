@@ -1,8 +1,7 @@
-[gd_scene load_steps=39 format=3 uid="uid://lbwcghwvwaxe"]
+[gd_scene load_steps=41 format=3 uid="uid://lbwcghwvwaxe"]
 
 [ext_resource type="Script" path="res://scripts/main_game.gd" id="1_1mkpx"]
 [ext_resource type="Script" path="res://scripts/cart.gd" id="2_6a1xf"]
-[ext_resource type="Environment" uid="uid://5lbkfght7wh5" path="res://base_environment.tres" id="3_yopuy"]
 [ext_resource type="PackedScene" uid="uid://db233dlqgvr23" path="res://models/Shopping cart.glb" id="4_t7gbs"]
 [ext_resource type="Texture2D" uid="uid://6smvjbh1h5jl" path="res://sprites/breadarm.png" id="5_cdawi"]
 [ext_resource type="AudioStream" uid="uid://dai3472k1lbti" path="res://sound/bear.mp3" id="6_o2epc"]
@@ -16,6 +15,30 @@
 [ext_resource type="LabelSettings" uid="uid://ni61wdkpy3r0" path="res://font/cartoon_label_settings.tres" id="12_ucwnl"]
 [ext_resource type="PackedScene" uid="uid://bjnveju72lt8w" path="res://gameobjects/table.tscn" id="15_fco6u"]
 [ext_resource type="AudioStream" uid="uid://civj8dg7bjnuy" path="res://sound/bearmusic.ogg" id="15_unhqc"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_php85"]
+sky_top_color = Color(0.360001, 0.731453, 0.370215, 1)
+sky_horizon_color = Color(0.67197, 0.773329, 0.594823, 1)
+ground_bottom_color = Color(0.327878, 0.361863, 0.00907553, 1)
+ground_horizon_color = Color(0.67197, 0.773329, 0.594823, 1)
+
+[sub_resource type="Sky" id="Sky_e6rdi"]
+sky_material = SubResource("ProceduralSkyMaterial_php85")
+
+[sub_resource type="Environment" id="Environment_ukont"]
+background_mode = 2
+sky = SubResource("Sky_e6rdi")
+ambient_light_source = 2
+ambient_light_color = Color(0, 0.188235, 0.2, 1)
+ambient_light_energy = 1.64
+tonemap_mode = 1
+glow_enabled = true
+glow_intensity = 1.3
+glow_strength = 1.08
+glow_bloom = 0.29
+fog_density = 0.001
+adjustment_enabled = true
+adjustment_brightness = 1.36
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qq2e3"]
 radius = 0.74652
@@ -284,6 +307,9 @@ size = Vector3(700, 90, 20)
 [node name="FastFashion" type="Node3D"]
 script = ExtResource("1_1mkpx")
 
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ukont")
+
 [node name="Cart" type="CharacterBody3D" parent="."]
 transform = Transform3D(0.847409, 0, -0.53094, 0, 1, 0, 0.53094, 0, 0.847409, -124.243, 0, 0)
 axis_lock_linear_y = true
@@ -300,7 +326,7 @@ transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 3.04447,
 
 [node name="Camera3D" type="Camera3D" parent="Cart"]
 transform = Transform3D(-4.37114e-08, 0.185667, -0.982613, 0, 0.982613, 0.185667, 1, 8.11575e-09, -4.29514e-08, -2.61442, 2.06957, 0.251083)
-environment = ExtResource("3_yopuy")
+current = true
 fov = 72.0
 
 [node name="ModelHolder" type="Node3D" parent="Cart"]
@@ -404,7 +430,11 @@ offset_right = 906.0
 offset_bottom = 400.0
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.827901, -0.354764, 0.434423, 0.187684, 0.905125, 0.381476, -0.528541, -0.23429, 0.815937, 0, 114.107, 0)
+transform = Transform3D(-0.608309, 0.656403, 0.446202, 0.592651, 0.00170402, 0.805457, 0.527944, 0.754409, -0.390055, 0, 14.1486, -66.7246)
+light_color = Color(0.268758, 0.640254, 0.599014, 1)
+light_energy = 0.1
+light_indirect_energy = 1.1
+shadow_enabled = true
 
 [node name="Long_clothes_2" type="Path3D" parent="." groups=["clothing_rack"]]
 transform = Transform3D(0.827901, -0.354764, 0.434423, 0.187684, 0.905125, 0.381476, -0.528541, -0.23429, 0.815937, 0, 1.723, 0)
