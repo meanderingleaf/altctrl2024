@@ -75,10 +75,15 @@ func paw_hit(body):
 			body.is_collected = true
 			#visibly collect
 			var throwDir = $ThrowPosition.global_position - body.global_position
-			body.gravity_scale = 1
+			#body.gravity_scale = 1
 			#body.apply_force(throwDir.normalized() * 1300)
 			body.global_position = $ThrowPosition.global_position
+			body.reparent(self)
+			body.position.x += randf_range(-2, 2)
+			body.position.z += randf_range(-2, 2)
+			body.position.z += randf_range(-.5, .5)
 			ClothingImages.collect_fashion(body)
+		
 		#audio!
 		$SFX/BearSFX.play(0)
 		
