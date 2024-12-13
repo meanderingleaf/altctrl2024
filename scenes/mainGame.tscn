@@ -560,28 +560,28 @@ autoplay = true
 [node name="Collision" type="Node3D" parent="."]
 
 [node name="Wall" type="StaticBody3D" parent="Collision"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -201.412)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -189.743)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Collision/Wall"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 16.9411)
 shape = SubResource("BoxShape3D_yivw0")
 
 [node name="Wall2" type="StaticBody3D" parent="Collision"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 184.185)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 173.488)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Collision/Wall2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 16.9411)
 shape = SubResource("BoxShape3D_yivw0")
 
 [node name="Wall3" type="StaticBody3D" parent="Collision"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -224.996, 0, -11.555)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -210.707, 0, -11.555)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Collision/Wall3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 16.9411)
 shape = SubResource("BoxShape3D_yivw0")
 
 [node name="Wall4" type="StaticBody3D" parent="Collision"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 203.056, 0, -11.555)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 161.243, 0, -11.555)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Collision/Wall4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 16.9411)
