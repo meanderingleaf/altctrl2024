@@ -1,0 +1,171 @@
+[gd_scene load_steps=17 format=3 uid="uid://r7vyjt0pww8y"]
+
+[ext_resource type="Script" path="res://scripts/cart.gd" id="1_fhr00"]
+[ext_resource type="Environment" uid="uid://5lbkfght7wh5" path="res://base_environment.tres" id="2_1f5ao"]
+[ext_resource type="PackedScene" uid="uid://db233dlqgvr23" path="res://models/Shopping cart.glb" id="3_7fcp8"]
+[ext_resource type="Texture2D" uid="uid://6smvjbh1h5jl" path="res://sprites/breadarm.png" id="4_1m87u"]
+[ext_resource type="AudioStream" uid="uid://dai3472k1lbti" path="res://sound/bear.mp3" id="5_0w63e"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qq2e3"]
+radius = 0.74652
+height = 4.1125
+
+[sub_resource type="BoxMesh" id="BoxMesh_28ca1"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bd1d8"]
+size = Vector3(14.0218, 4.93471, 3.71338)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ikach"]
+size = Vector3(14.1684, 5.41191, 1)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_hpigk"]
+friction = 10.05
+rough = true
+absorbent = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1b6pk"]
+size = Vector3(4.41438, 0.814697, 3.81456)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gtk7n"]
+size = Vector3(4.12508, 1.99814, 0.267822)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_33p1h"]
+size = Vector3(1.36494, 2, 4.27114)
+
+[sub_resource type="Animation" id="Animation_sj27o"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HandHolder:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.907745, 0.594257, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_64t8s"]
+resource_name = "walkin"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HandHolder:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.833333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.907745, 0.594257, 0), Vector3(0.908, 0.9, 0), Vector3(0.908, 0.594, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nvs2d"]
+_data = {
+"RESET": SubResource("Animation_sj27o"),
+"walkin": SubResource("Animation_64t8s")
+}
+
+[node name="Cart" type="CharacterBody3D"]
+transform = Transform3D(0.847409, 0, -0.53094, 0, 1, 0, 0.53094, 0, 0.847409, -124.243, 0, 0)
+axis_lock_linear_y = true
+motion_mode = 1
+script = ExtResource("1_fhr00")
+speed = 20.0
+
+[node name="Shorpe" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.81161, -1.23158, -0.0435195)
+shape = SubResource("CapsuleShape3D_qq2e3")
+
+[node name="ThrowPosition" type="Node3D" parent="."]
+transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 3.04447, -0.919871, 0)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0.185667, -0.982613, 0, 0.982613, 0.185667, 1, 8.11575e-09, -4.29514e-08, -2.61442, 2.06957, 0.251083)
+environment = ExtResource("2_1f5ao")
+fov = 72.0
+
+[node name="ModelHolder" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ModelHolder"]
+transform = Transform3D(1.49637, 0, 0, 0, 0.630403, 0, 0, 0, 1, 0.30477, 0, 0)
+visible = false
+mesh = SubResource("BoxMesh_28ca1")
+skeleton = NodePath("../..")
+
+[node name="Shopping cart" parent="ModelHolder" instance=ExtResource("3_7fcp8")]
+transform = Transform3D(-3.04539e-07, 0, -1.20353e-05, 0, 8.09244e-06, 0, 1.94509e-05, 0, -1.88435e-07, -3.41296, -1.9952, 17.5346)
+
+[node name="HandHolder" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.907745, 0.594257, 0)
+
+[node name="R Hand" type="Sprite3D" parent="HandHolder"]
+transform = Transform3D(-8.74228e-09, 0.1, -0.173205, 0, 0.173205, 0.1, 0.2, 4.37114e-09, -7.57103e-09, -2.22186, 0, 1.19501)
+texture = ExtResource("4_1m87u")
+
+[node name="Right_Paw_Area" type="Area3D" parent="HandHolder/R Hand"]
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HandHolder/R Hand/Right_Paw_Area"]
+transform = Transform3D(0.99997, -1.74616e-12, 1.74438e-12, -4.3876e-13, 1, -1.78814e-07, -7.67386e-13, 1.78814e-07, 1, 2.03281, 2.87908, 0.1912)
+shape = SubResource("BoxShape3D_bd1d8")
+
+[node name="L Hand" type="Sprite3D" parent="HandHolder"]
+transform = Transform3D(-8.74228e-09, 0.1, 0.173205, 0, 0.173205, -0.1, -0.2, -4.37114e-09, -7.57103e-09, -2.36568, 0.240258, -0.994046)
+texture = ExtResource("4_1m87u")
+
+[node name="Left_Paw_Area" type="Area3D" parent="HandHolder/L Hand"]
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HandHolder/L Hand/Left_Paw_Area"]
+transform = Transform3D(0.999977, -1.35536e-12, -1.35358e-12, -4.12115e-13, 1, 1.78814e-07, 5.71987e-13, -1.78814e-07, 1, 0.345965, 2.20596, 0)
+shape = SubResource("BoxShape3D_ikach")
+
+[node name="SFX" type="Node3D" parent="."]
+
+[node name="BearSFX" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("5_0w63e")
+
+[node name="CartBox" type="RigidBody3D" parent="."]
+collision_mask = 3
+axis_lock_linear_x = true
+axis_lock_linear_y = true
+axis_lock_linear_z = true
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+physics_material_override = SubResource("PhysicsMaterial_hpigk")
+gravity_scale = 0.0
+
+[node name="BottomShape" type="CollisionShape3D" parent="CartBox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.70719, -1.67607, 0.0150986)
+shape = SubResource("BoxShape3D_1b6pk")
+
+[node name="SideShape" type="CollisionShape3D" parent="CartBox"]
+transform = Transform3D(1, 0, 0, 0, 0.963933, -0.266145, 0, 0.266145, 0.963933, 1.93873, -0.266895, 2.20944)
+shape = SubResource("BoxShape3D_gtk7n")
+
+[node name="SideShape2" type="CollisionShape3D" parent="CartBox"]
+transform = Transform3D(1, 0, 0, 0, 0.928486, 0.371368, 0, -0.371368, 0.928486, 1.91677, -0.0533469, -2.29792)
+shape = SubResource("BoxShape3D_gtk7n")
+
+[node name="FrontShape" type="CollisionShape3D" parent="CartBox"]
+transform = Transform3D(0.957476, 0.288514, 0, -0.288514, 0.957476, 0, 0, 0, 1, 4.41842, 0.311824, -0.104364)
+shape = SubResource("BoxShape3D_33p1h")
+
+[node name="FrontShape2" type="CollisionShape3D" parent="CartBox"]
+transform = Transform3D(0.928077, -0.372389, 0, 0.372389, 0.928077, 0, 0, 0, 1, 0.0875797, -1.41149, 0.335427)
+shape = SubResource("BoxShape3D_33p1h")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_nvs2d")
+}
+autoplay = "walkin"
+
+[connection signal="body_entered" from="HandHolder/R Hand/Right_Paw_Area" to="." method="_on_right_paw_area_body_entered"]
+[connection signal="body_entered" from="HandHolder/L Hand/Left_Paw_Area" to="." method="_on_left_paw_area_body_entered"]

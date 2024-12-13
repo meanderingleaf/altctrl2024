@@ -7,8 +7,7 @@ var clothing_list = [ "sexy", "sexy", "hungry" ]
 func _ready() -> void:
 	
 	var inCannon = ClothingImages.collected_clothes.size()
-	inCannon = 15
-	for cloth in inCannon:	
+	for cloth in ClothingImages.collected_clothes:	
 		var n_clothes = clothing_prefab.instantiate()
 		n_clothes.position = self.position
 		var base_force =  -self.basis.z * 1000.0
@@ -17,6 +16,7 @@ func _ready() -> void:
 		n_clothes.apply_force(base_force)
 		n_clothes.apply_torque(  Vector3( randf(), randf(), randf() ) * randf() * 20.0 )
 		n_clothes.gravity_scale = 0.5
+		n_clothes.override_type()
 		add_child(n_clothes)
 	pass # Replace with function body.
 

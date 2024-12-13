@@ -71,10 +71,13 @@ func set_hand(hand, value):
 
 func paw_hit(body):
 	if(body.is_in_group("clothes")):
-		#visibly collect
-		var throwDir = $ThrowPosition.global_position - body.global_position
-		body.gravity_scale = .3
-		body.apply_force(throwDir.normalized() * 1300)
+		if(!body.is_collected):
+			body.is_collected = true
+			#visibly collect
+			var throwDir = $ThrowPosition.global_position - body.global_position
+			body.gravity_scale = 1
+			#body.apply_force(throwDir.normalized() * 1300)
+			body.global_position = $ThrowPosition.global_position
 		
 		#audio!
 		$SFX/BearSFX.play(0)
