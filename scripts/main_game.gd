@@ -7,6 +7,7 @@ var collected = 0
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	ClothingImages.select_round_style()
+	ClothingImages.round_start_cleanup()
 	get_tree().call_group("clothing_rack", "spawn_clothes")
 	$GameStartUI.show_message(ClothingImages.selected_style)
 	pass # Replace with function body.

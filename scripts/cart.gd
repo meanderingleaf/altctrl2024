@@ -78,7 +78,7 @@ func paw_hit(body):
 			body.gravity_scale = 1
 			#body.apply_force(throwDir.normalized() * 1300)
 			body.global_position = $ThrowPosition.global_position
-		
+			ClothingImages.collect_fashion(body)
 		#audio!
 		$SFX/BearSFX.play(0)
 		

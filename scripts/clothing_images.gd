@@ -4,10 +4,9 @@ class_name clothing_images
 
 enum CLOTHING_TYPE { CASUAL = 1, SEXY = 2, RETRO = 3 }
 
-
-var collected_clothes = []
-var selected_sty = 0
-var selected_style = "cas"
+@export var collected_clothes : Array
+@export var selected_sty = 0
+@export var selected_style = "cas"
 
 var clothes_list = {
 	CLOTHING_TYPE.SEXY: [ "../sprites/glasses.png"  ],
@@ -17,6 +16,17 @@ var clothes_list = {
 
 func round_start_cleanup():
 	collected_clothes = []
+	pass
+	
+
+func collect_fashion(cloth):
+	var clothing_data = {"type": cloth.type, "graphic": cloth.texture_path }
+	collected_clothes.push_front(clothing_data) 
+	
+func seed_random_clothing(amt):
+	for i in amt:
+		collected_clothes.push_front( { "type": CLOTHING_TYPE.SEXY, "graphic": "../sprites/glasses.png"  } )
+	pass
 
 func select_round_style():
 	
